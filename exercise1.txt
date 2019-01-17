@@ -1,2 +1,8 @@
 First ex:
+git add *.txt
+git commit -m "adding txt files"
+git log
+Create new repository online with Exercises (same name!) and copy http address
+Git remote add origin http-link
+Git push origin master
 
