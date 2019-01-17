@@ -1,0 +1,21 @@
+db.getCollection('Restaurants').find({},{_id:1,cuisine:1, borough:1, name:1})
+
+db.getCollection('Restaurants').find({borough:"Bronx"},{_id:1, borough:1, name:1}).limit(5).skip(5)
+
+db.getCollection('Restaurants').find({"grades.score":{$gt:90}},{name:1})
+
+db.getCollection('Restaurants').find({"grades.score":{$gt:70},"address.coord":{$lt:-65.754168}, cuisine:{$ne:"American"}},{name:1, cuisine:1})
+
+db.getCollection('Restaurants').find({borough:"Bronx",$or:[{cuisine:"American"},{cuisine:"Chinese"}]},{name:1, cuisine:1})
+
+db.getCollection('Restaurants').find({borough:{$nin:["Staten Island","Queens","Bronx","Brooklyn"]}},{_id:1, name:1, borough:1, cuisine:1})
+
+db.getCollection('Restaurants').find({"grades.score":{$not:{$gt:10}}},{_id:1, name:1, borough:1, cuisine:1, grades:1})
+
+db.getCollection('Restaurants').find({grades:{$all:[ISODate("2014-08-11T00:00:00Z"),11,"A"]}},{restaurant_id:1, name:1, grades:1})
+
+db.getCollection('Restaurants').find({},{name:1}).sort({cuisine:1, borough:-1})
+
+db.getCollection('Restaurants').find({"address.street":{$exists:0}})
+
+

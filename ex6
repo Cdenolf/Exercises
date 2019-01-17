@@ -1,0 +1,5 @@
+SELECT stdFirstName, stdLastName, stdGPA, stdCity FROM college.student where stdGPA > 3.7;
+
+SELECT FacFirstName, FacLastName, FacHireDate FROM college.faculty where FacHireDate between "1999-01-01" and "2000-12-31";
+
+

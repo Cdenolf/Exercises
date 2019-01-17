@@ -1,0 +1,28 @@
+select guestname, guestaddress from guest join booking on booking.guestno = guest.guestno join hotel on hotel.hotelno = booking.hotelno where hotel.city = "London" order by guestname
+
+SELECT * FROM Vacation.room where (type = "double" or type = "family") and price < 40 order by price asc;
+
+select * from Vacation.booking where dateto is NULL;
+
+SELECT sum(price) FROM Vacation.room group by type having type ="double";
+
+SELECT * FROM Vacation.booking where (dateto >= "2019-08-31" and datefrom <= "2019-08-01") or (datefrom between "2019-08-01" and "2019-08-31") or (dateto between "2019-08-01" and "2019-08-31");
+
+SELECT type, price FROM Vacation.hotel join Vacation.room on hotel.hotelno=room.hotelno where hotelname="The Tower Hotel";
+
+SELECT guestname FROM Vacation.booking join Vacation.guest on booking.guestno = guest.guestno where (dateto >= "2019-01-17" and datefrom <= "2019-01-17");
+
+SELECT sum(price) FROM Vacation.booking join Vacation.room on room.hotelno = booking.hotelno join Vacation.hotel on hotel.hotelno = room.hotelno where datefrom<="2019-01-17" and dateto>="2019-01-17" and hotel.hotelno ="fb01";
+
+Unoccupied rooms: important where dateto<today and datefrom>today
+
+Unoccupied: lost income -> sum(price)
+
+select hotel.hotelname, count(*) as "Amount of rooms" from Vacation.room join Vacation.hotel on room.hotelno = hotel.hotelno where hotel.city = "London" group by hotel.hotelname;
+
+SELECT room.type, count(*) as "Amount of bookings" FROM Vacation.booking join Vacation.hotel on hotel.hotelno = booking.hotelno join Vacation.room on room.hotelno = hotel.hotelno where hotel.city = "London" group by room.type;
+
+Update Vacation.room set room.price = room.price*1.05;
+
+
+
