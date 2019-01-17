@@ -1,0 +1,4 @@
+Ex4.txt:
+Forward engineer!
+Database made under my_db
+Make sure mysql server is running!
