@@ -1,0 +1,13 @@
+Normalisation:
+
+UNF -> Hospital(staffNo, dentistName, patientNo, patientName, appointment (date, time), surgeryNo)
+
+1NF -> Hospital("staffNo", dentistName, patientNo, patientName, surgeryNo, "appointDate", "appointTime")
+
+2NF -> Dentist("staffNo", dentistName) + appointment(patientNo, patientName, "staffNo", "appointDate", "appointTime") + surgery("staffNo", "appointDate", SurgeryNo)
+
+3NF -> Dentist("staffNo", dentistName) + appointment("staffNo", PatientNo, "appointDate", "appointTime") + patient ("patientNo", patientName) + surgery("staffNo", "appointDate", SurgeryNo)
+
+BCNF -> same (every determinant is a candidate key)
+
+

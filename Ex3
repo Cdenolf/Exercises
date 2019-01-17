@@ -1,0 +1,15 @@
+UNF -> Hospital(PatientNo, FullName, WardNo, BedNo, WardName, drugNo, Name, Description, Dosage, MethodofAdmin, UnitsperDay, StartDate, FinishDate)
+
+Repeating groups: multiple drugs per patient.
+
+1NF -> Patient("PatientNo", FullName, WardNo, WardName, BedNo) + Drug("drugNo", Name, Description, Dosage, MethodofAdmin, UnitsperDay, "StartDate", FinishDate, "patientNo")
+
+Not dependent on entire key, so split off in drug table.
+
+2NF -> Patient("PatientNo", FullName, WardNo, BedNo, Wardname) + Drug("drugNo", Name, Description, Dosage, MethodofAdmin) + Administration("PatientNo", "drugNo", "StartDate", UnitsperDay,  FinishDate)
+
+Transitory dependency for wardname on wardno.
+
+3NF -> Patient("PatientNo", FullName, WardNo, BedNo) + Ward("WardNo", WardName) + Drug("drugNo", Name, Description, Dosage, MethodofAdmin) + Administration("PatientNo", "drugNo", "StartDate", UnitsperDay,  FinishDate)
+
+BCNF -> same
