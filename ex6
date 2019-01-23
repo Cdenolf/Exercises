@@ -1,5 +1,30 @@
-SELECT stdFirstName, stdLastName, stdGPA, stdCity FROM college.student where stdGPA > 3.7;
+SELECT stdFirstName, stdLastName, stdGPA, stdCity FROM college.student where stdGPA >= 3.7;
 
 SELECT FacFirstName, FacLastName, FacHireDate FROM college.faculty where FacHireDate between "1999-01-01" and "2000-12-31";
 
+SELECT OfferNo, CourseNo, FacSSN FROM college.offering where (Offterm = "FALL" and Offyear = "2005") or (Offterm = "WINTER" and Offyear = "2006");
+
+SELECT OfferNo, course.CourseNo, OffDays, OffTime FROM college.offering join college.course on course.CourseNo = offering.CourseNo where (course.crsDesc LIKE "%DATABASE%" or course.crsDesc LIKE "%PROGRAMMING%") and (Offterm = "SPRING" and Offyear = "2006");
+
+SELECT OfferNo, course.CourseNo, FacFirstName, FacLastName FROM college.offering join college.course on course.CourseNo = offering.CourseNo join college.faculty on faculty.FacSSN = offering.FacSSN where (Offterm = "FALL" and Offyear = "2005") and (offering.CourseNo Rlike "IS");
+
+SELECT stdMajor, round(avg(stdGPA), 2) as "Average GPA" FROM college.student group by stdMajor;
+
+SELECT OffYear, count(distinct(CourseNo)) as "Amount of unique courses", count(*) as "Amount of offerings" FROM college.offering group by Offyear;
+
+SELECT stdMajor, round(avg(stdGPA), 2) as "Average GPA" FROM college.student where stdClass = "JR" or stdClass = "SR" group by stdMajor having avg(stdGPA) > 3.1;
+
+SELECT stdMajor, stdClass, min(stdGPA) as "Min GPA", max(stdGPA) as "Max GPA" FROM college.student group by stdMajor, stdClass order by stdMajor;
+
+SELECT crsDesc, count(*) as "Count" FROM college.course where CourseNo rlike "IS" group by crsDesc;
+
+SELECT stdGPA, stdFirstName, stdLastName, stdCity, stdState FROM college.student where stdCLass = "JR" order by stdGPA asc;
+
+SELECT distinct(concat(FacCity, " ", FacSTate)) as "Unique city and state" FROM college.faculty;
+
+SELECT concat(stdFirstName, " ", stdLastName) as "Name", OfferNo, EnrGrade FROM college.student join college.enrollment on student.stdSSN = enrollment.StdSSN where enrGrade >= 3.5;
+
+SELECT concat(stdFirstName, " ", stdLastName) as "Name" FROM college.student join college.enrollment on student.stdSSN = enrollment.StdSSN where enrGrade >= 3.5 group by concat(stdFirstName, " ", stdLastName);
+
+SELECT offering.OfferNo, offering.CourseNo, OffDays, OffLocation, OffTime, FacFirstName, FacLastName  FROM college.student join college.enrollment on enrollment.StdSSN = student.stdSSN join college.offering on offering.OfferNo = enrollment.OfferNo join college.faculty on faculty.FacSSN = offering.FacSSN where (student.stdSSN = "124-56-7890" and Offterm = "SPRING" and Offyear = "2006");
 
